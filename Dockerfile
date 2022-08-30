@@ -7,11 +7,11 @@ WORKDIR /opt/api
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 
-RUN ./mvnw dependency:go-offline
+RUN ./mvnw dependency:resolve
 
 COPY src ./src
 
-RUN ./mvnw package
+RUN ./mvnw package -DskipTests
 # ---
 
 FROM eclipse-temurin:17-jre-jammy
